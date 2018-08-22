@@ -1,4 +1,6 @@
-# Este repositorio común contiene material de enseñanza de R
+# Capacitación R
+
+Este repositorio común contiene material (presetaciones, códsigos) para la enseñanza de R.
 
 Contiene los siguientes capítulos:
 
