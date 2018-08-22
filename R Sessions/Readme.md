@@ -2,7 +2,7 @@
 
 Contiene los siguientes capítulos:
 
-## Introduccion a R
+## Sesión 1 : Introduccion a R
 
 Los temas a tratar en  esta sesión son:
 
