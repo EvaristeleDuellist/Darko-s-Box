@@ -1,0 +1,240 @@
+---
+title       : Introducción a R
+subtitle    : Estructuras de Control
+author      : Inteligencia de Negocios
+date        : "`r format(Sys.time(), '%d %B %Y')`"
+logo        : logo.png
+# theme     : cerulean
+css         : style.css
+output      : 
+  ioslides_presentation:
+    widescreen: true
+    transition: slower
+    smaller: true
+    smart: true
+---
+
+## Estructuras de Control
+
+Las estructuras de control permiten controlar el flujo de ejecuciones de un programa. Las estructuras más comunes son:
+
+- `if`, `else`: Probar una condición
+
+- `for`: ejecutar un ciclo un número fijo de veces
+
+- `while`: ejecutar un ciclo _mientras_ una condición sea verdadera
+
+- `repeat`: Ejecutar un ciclo infinito
+
+- `break`: Romper la ejecución de un ciclo
+
+- `next`: Saltar una iteración del ciclo
+
+- `return`: Salir de una función
+
+Son generalmente usadas en la escritura de funciones.
+
+## Estructura de Coltrol: if
+
+```r
+if(<condition>) {
+        ## instrucción
+} else {
+        ## instrucción
+}
+if(<condition1>) {
+        ## instrucción
+} else if(<condition2>)  {
+        ## instrucción
+} else {
+        ## instrucción
+}
+```
+## if
+
+El siguiente es un ejemplo de un if
+
+```r
+if(x > 3) {
+        y <- 10
+} else {
+        y <- 0
+}
+```
+
+al igual que:
+
+```r
+y <- if(x > 3) {
+        10
+} else { 
+        0
+}
+```
+
+## if
+
+La inclusión de la instrucción ```else``` no es estrictamente necesaria
+
+```r
+if(<condition1>) {
+
+}
+
+if(<condition2>) {
+
+}
+```
+
+## for
+
+`for` toma una variable iteradora y le asigna valores sucesivos a partir de una secuencia o un vector. Usualmente se usan para iterar sobre los elementos de un objeto (lista, vector, etc.)
+
+```r
+for(i in 1:10) {
+        print(i)
+}
+```
+
+La variable `i` es el iterador la cual toma los valores 1, 2, 3, ... y 10
+
+## for
+
+Los siguientes ciclos son equivalentes:
+
+```r
+x <- c("a", "b", "c", "d")
+
+for(i in 1:4) {
+        print(x[i])
+}
+
+for(i in seq_along(x)) {
+        print(x[i])
+}
+
+for(letter in x) {
+        print(letter)
+}
+
+for(i in 1:4) print(x[i])
+```
+
+## Ciclos anidados
+
+Los ciclos `for`  pueden ser anidados
+
+```r
+x <- matrix(1:6, 2, 3)
+
+for(i in seq_len(nrow(x))) {
+        for(j in seq_len(ncol(x))) {
+                print(x[i, j])
+        }   
+}
+```
+
+Se considera una buena práctica no anidar mas de 3 ciclos debido a su dificultad en la lectura.
+
+## while
+
+EL ciclo `while` inicia verificando una condición. Si es verdadera ejecuta el cuerpo del ciclo. Una vez se ejecuta el código se vuelve a testear la condición hasta cuando esta sea falsa.
+
+```r
+count <- 0
+while(count < 10) {
+        print(count)
+        count <- count + 1
+}
+```
+
+!!!CIUDADO: Es común escribir ciclos infinitos con la instrucción `while`  !!!
+
+## while
+
+Es posible verificar más de una condición en un ciclo `while` 
+
+```r
+z <- 5
+
+while(z >= 3 && z <= 10) {
+        print(z)
+        coin <- rbinom(1, 1, 0.5)
+        
+        if(coin == 1) {  ## random walk
+                z <- z + 1
+        } else {
+                z <- z - 1
+        } 
+}
+```
+
+Las condiciones se evalúan de izquierda a derecha.
+
+## repeat
+
+```r
+x0 <- 1
+tol <- 1e-8
+
+repeat {
+        x1 <- Estimacion()
+        
+        if(abs(x1 - x0) < tol) {
+                break
+        } else {
+                x0 <- x1
+        } 
+}
+```
+
+!!!CIUDADO: Posible ciclo infinito !!!
+
+## next, return
+
+`next` se usa para saltar una iteración de un ciclo
+
+```r
+for(i in 1:100) {
+        if(i <= 20) {
+                ## Salta las primeras iteraciones
+                next 
+        }
+        ## Instrucciones
+}
+```
+`return` indica que una función debe terminar y retornar cierto valor
+
+## Apply
+
+`apply` se usa para evaluar una función en las márgenes de un arreglo
+
+- Es frecuentemente usado para aplicar funciones a las filas o a las columnas de una matriz o dataframe
+
+- Es principlamente usado para reemplazar la ejecucion de ciclos en una sola linea 
+
+## Ejemplo: col/row Sumas y Promedios
+
+las siguientes funciones son equivalentes y muestran la funcuinalidad de apply
+
+- `rowSums` = `apply(x, 1, sum)`
+- `rowMeans` = `apply(x, 1, mean)`
+- `colSums` = `apply(x, 2, sum)`
+- `colMeans` = `apply(x, 2, mean)`
+
+## Ejemplo: Promedio de una matriz
+
+Promedios de Matrices con Apply
+
+```r
+> a <- array(rnorm(2 * 2 * 10), c(2, 2, 10))
+> apply(a, c(1, 2), mean)
+           [,1]        [,2]
+[1,] -0.2353245 -0.03980211
+[2,] -0.3339748  0.04364908
+
+> rowMeans(a, dims = 2)
+           [,1]        [,2]
+[1,] -0.2353245 -0.03980211
+[2,] -0.3339748  0.04364908
+```

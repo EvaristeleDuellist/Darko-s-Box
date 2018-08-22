@@ -1,0 +1,477 @@
+---
+title       : Introducción a R
+subtitle    : Tipos de Datos y Opeaciones Básicas
+author      : Inteligencia de Negocios
+date        : "`r format(Sys.time(), '%d %B %Y')`"
+logo        : logo.png
+# theme       : cerulean
+css         : style.css
+output      : 
+  ioslides_presentation:
+    widescreen: true
+    transition: slower
+    smaller: true
+    smart: true
+---
+
+# Tipos de Objetos
+
+## Objetos 
+
+R tiene cinco elementos básicos o *clases atómicas*:
+
+-   character
+
+-   numeric (Números Reales)
+
+-   integer
+
+-   complex
+
+-   logical (Verdadero/Falso)
+
+## Objetos
+
+A partir de las clases atómicas se construyen diferentes objetos de los cuales el más básico es el vector. Este solo puede contener objetos de una misma clase.
+
+Por otra parte, una *lista*, la cual se representa como un  vector puede contener objetos de diferentes clases.
+
+El nombre de un objeto no puede comenzar por número o por un carácter especial salvo "_"
+
+Es posible crear vectores vacíos con la función ```vector()```
+
+## Caracteres 
+
+Pueden almacenar cualquier texto en cualquier codificación.
+
+Para almacenar una cadena es necesario enmarcarla en comillas simples o sencillas.
+
+R soporta [expresiones regulares](https://www.regular-expressions.info/rlanguage.html) y funciones de modificación de cadenas. Esto se retomará posteriormente 
+
+## Números 
+
+-   Por defecto los números en R son almacenados en clase numérica (i.e. números reales de doble precisión)
+
+-   Para almacenar un entero es necesario hacerlo explícitamente mediante el sufijo ```L```
+    
+-   Ejemplo: Introduciendo ```1``` da como resultado un objeto numérico; Introduciendo ```1L```
+    da como resultado un entero.
+
+-   Existe también el número ```Inf``` el cual representa infinito. Puede ser usado para cálculos
+    e.g. ```1 / 0 ``` es ```Inf```
+    e.g. ```1 / Inf``` es ```0```
+
+-   ```NaN``` representa un valor indefinido e.g. 0 / 0
+-   ```NaN``` se puede interpretar como un valor ausente
+
+## Lógicos
+
+Valores Booleanos (Verdadero o Falso)
+
+En R, ```TRUE``` y ```T``` son equivalentes, de la misma forma que ```FALSE``` y ```F```
+
+Los objetos lógicos pueden ser interpretados como valores numéricos ```0: F``` , ```>0: T```
+
+## Complejos 
+
+Representación computacional de números no Reales
+
+- e.g. ```3+4i```
+- e.g. ```0.5-1i```
+- e.g. ```-7+2.5i```
+
+## Atributos 
+
+Los Objetos de R Pueden tener atributos
+
+-   nombres, nombres de dimensiones
+
+-   dimensiones (e.g. matrices, arreglos, dataframes)
+
+-   class
+
+-   Longitud
+
+Para conocer los atributos de un objeto se usa la función ```attributes()```
+
+## Entradas y Asignaciones
+
+En el script o en la consola, el símbolo `<-` es el operador de asignación.
+
+```r
+> x <- 1
+> print(x)
+[1] 1
+> x
+[1] 1
+> msg <- "Hola"
+```
+
+La gramática del lenguaje determina si una expresión está completa o no
+
+```r
+> x <-  ## Expresión Incompleta
+```
+
+El caracter # indica un comentario, por lo cual su ejecución es ignorada
+
+## Evaluación 
+
+Cuando se introduce una expresión completa, se evalúa y se retorna el resultado de la expresión evaluada. El resultado puede ser impreso automáticamente
+
+```r
+> x <- 5  ## No Imprime nada
+> x       ## Impresión Automatica
+[1] 5
+> print(x)  ## Impresión Explícita
+[1] 5
+```
+
+El `[1]` indica que `x` es un vector y  `5` es el primer elemento.
+
+## Creación de Vectores
+
+La función `c()` es usada para crear vectores por extensión
+
+```r
+> x <- c(0.5, 0.6)       ## numeric
+> x <- c(TRUE, FALSE)    ## logical
+> x <- c(T, F)           ## logical
+> x <- c("a", "b", "c")  ## character
+> x <- 9:29              ## integer
+> x <- c(1+0i, 2+4i)     ## complex
+```
+
+Usando la función `vector()`:
+
+```r
+> x <- vector("numeric", length = 10) 
+> x
+ [1] 0 0 0 0 0 0 0 0 0 0
+```
+
+## Mezcla de Objetos
+
+Verifiquemos que sucede cuando se mezclan objetos en un mismo vector:
+
+```r
+> y <- c(1.7, "a")   ## character
+> y <- c(TRUE, 2)    ## numeric
+> y <- c("a", TRUE)  ## character
+```
+
+Cuando se mezclan objetos ocurre lo que se conoce como, _coerción implícita_ la cual convierte cada elemento del vector a la misma clase.
+
+## Coerción Explícita
+
+Los objetos pueden ser coercidos mediante la función `as.*` donde `*` corresponde a la clase objetivo 
+
+```r
+> x <- 0:6
+> class(x)
+[1] "integer"
+> as.numeric(x)
+[1] 0 1 2 3 4 5 6
+> as.logical(x)
+[1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+> as.character(x)
+[1] "0" "1" "2" "3" "4" "5" "6"
+```
+
+## Coerción Explícita
+
+Cuando la coerción no tiene sentido se generan `NA`s.
+
+```r
+> x <- c("a", "b", "c")
+> as.numeric(x)
+[1] NA NA NA
+Warning message:
+NAs introduced by coercion
+> as.logical(x)
+[1] NA NA NA
+> as.complex(x)
+[1] NA NA NA NA
+Warning message:
+NAs introduced by coercion
+```
+## Matrices
+
+Las matrices son vectores con un atributo de _dimension_ . La dimensión es de hecho un vector de longitud 2  (nrow, ncol)
+
+```r
+> m <- matrix(nrow = 2, ncol = 3) 
+> m
+     [,1] [,2] [,3]
+[1,]   NA   NA   NA
+[2,]   NA   NA   NA
+> dim(m)
+[1] 2 3
+> attributes(m)
+$dim
+[1] 2 3
+```
+
+## Matrices
+
+Las matrices se construyen de manera _columnar_, es decir, las entradas empiezan en la esquina superior derecha y continúan en cada columna.
+
+```r
+> m <- matrix(1:6, nrow = 2, ncol = 3) 
+> m
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+```
+
+## Matrices
+
+Las matrices se pueden crear a partir de un vector añadiendo el atributo de dimensión
+
+```r
+> m <- 1:10 
+> m
+[1] 1 2 3 4 5 6 7 8 9 10 
+> dim(m) <- c(2, 5)
+> m
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    3    5    7    9
+[2,]    2    4    6    8   10
+```
+
+## Binding
+
+Las matrices se pueden crear mediante _binding_ por por fila o columna con `rbind()` y `cbind()` respectivamente.
+
+```r
+> x <- 1:3
+> y <- 10:12
+> cbind(x, y)
+     x  y 
+[1,] 1 10 
+[2,] 2 11 
+[3,] 3 12
+> rbind(x, y) 
+  [,1] [,2] [,3]
+x    1    2    3
+y   10   11   12
+```
+
+## Listas {.smaller}
+
+Las listas en sentido general, funcionan como un vector con la excepción que se almacenan objetos de diferentes clases.
+
+Los elementos de la lista tiene dos niveles, el primero de ellos hace referencia al elemento y el segundo 
+a los subelementos de la lista
+
+```r
+> x <- list(1, "a", TRUE, 1 + 4i) 
+> x
+[[1]]
+[1] 1
+
+[[2]] 
+[1] "a"
+
+[[3]]
+[1] TRUE
+
+[[4]]
+[1] 1+4i
+```
+
+## Factores 
+
+Los factores, en estadística, son utilizados para representar datos categóricos, Puede ser ordenados o no ordenados. Se puede pensar en un factor como un vector entero cuyos elementos _(levels)_ tienen etiquetas _(labels)_.
+
+
+- Los factores son tratados especialmente en funciones de modelamiento estadístico `lm()` y `glm()`
+
+- Usar los factores con _labels_ es una buena práctica. Por ejemplo, tener una variable con valores _masculino_ y _femenino_ es mejor que una variable con valores 1 y 2.
+
+## Factores
+
+```r
+> x <- factor(c("yes", "yes", "no", "yes", "no")) 
+> x
+[1] yes yes no yes no
+Levels: no yes
+> table(x) 
+x
+no yes 
+ 2   3
+> unclass(x)
+[1] 2 2 1 2 1
+attr(,"levels")
+[1] "no"  "yes"
+```
+
+## Factores
+
+El orden de los factores puede ser modificado mediante el argumento `levels` de la función `factor()`.
+
+```r
+> x <- factor(c("yes", "yes", "no", "yes", "no"),
+              levels = c("yes", "no"))
+> x
+[1] yes yes no yes no 
+Levels: yes no
+```
+
+## Valores Ausentes
+
+Los valores ausentes de denotan como `NA` o `NaN` para operaciones matemáticas no definidas
+
+- `is.na()` se usa para verificar si un valor es `NA`
+
+- No se recomienda verificar si un valor es ausente `x == NA` 
+
+- `is.nan()` se usa para verificar si un valor es `NaN`
+
+- `NA` tiene clase, es decir, existen `NA`, character, `NA` integer, etc.
+
+- Un `NaN` es también un `NA` pero el recíproco no es cierto
+
+## Valores Ausentes
+
+```r
+> x <- c(1, 2, NA, 10, 3)
+> is.na(x)
+[1] FALSE FALSE  TRUE FALSE FALSE
+> is.nan(x)
+[1] FALSE FALSE FALSE FALSE FALSE
+> x <- c(1, 2, NaN, NA, 4)
+> is.na(x)
+[1] FALSE FALSE  TRUE  TRUE FALSE
+> is.nan(x)
+[1] FALSE FALSE  TRUE FALSE FALSE
+```
+
+## Data Frames
+
+Los Dataframes se usan para almacenar información tabular
+
+- Se representan como un tipo especial de lista donde cada objeto tiene que tener la misma longitud.
+
+- Cada elemento puede ser interpretado como una columna y la longitud de cada elemento es el numero de filas.
+
+- Distinto a las matrices, los data frames pueden contener elementos de diferentes clases en cada columna.
+
+- Data frames tienen un atributo para el nombre de las filas `row.names`
+
+- Se suelen crear a partir de funciones de lectura `read.table()`, `read.csv()` o `fread()`
+
+## Data Frames
+
+```r
+> x <- data.frame(foo = 1:4, bar = c(T, T, F, F)) 
+> x
+  foo   bar
+1   1  TRUE
+2   2  TRUE
+3   3 FALSE
+4   4 FALSE
+> nrow(x)
+[1] 4
+> ncol(x)
+[1] 2
+```
+
+## Nombres
+
+Los objetos R tienen nombres, lo cual es bastante útil en la utilización de los mismos
+
+```r
+> x <- 1:3
+> names(x)
+NULL
+> names(x) <- c("foo", "bar", "norf") 
+> x
+foo bar norf 
+  1   2    3
+> names(x)
+[1] "foo"  "bar"  "norf"
+```
+
+## Nombres
+
+Las listas también pueden tener nombres
+
+```r
+> x <- list(a = 1, b = 2, c = 3) 
+> x
+$a
+[1] 1
+
+$b 
+[1] 2
+
+$c 
+[1] 3
+```
+
+## Nombres
+
+Al igual que las matrices.
+
+```r
+> m <- matrix(1:4, nrow = 2, ncol = 2)
+> dimnames(m) <- list(c("a", "b"), c("c", "d")) 
+> m
+  c d 
+a 1 3 
+b 2 4
+```
+
+# Operadores
+
+## Operaciones Aritméticas
+
+* `+` : Suma
+* `-` : Resta
+* `*` : Multiplicación
+* `/` : División
+* `^ o **` : Potencias
+* `x %% y` : Módulo / Residuo
+* `x %/% y` : División Entera
+
+## Operaciones Lógicas
+
+* `> ; >=` : Mayor ; Mayor o igual
+* `< ; <=` : Menos ; Menor o igual
+* `==` : Igual
+* `!=` : Diferente
+* `!` : Negación
+* `x & y` : Disyunción
+* `x | y` : Conjunción
+* `%in%` : Contenencia
+
+## Vectorización de Operaciones
+
+Muchas operaciones en R son vectorizadas, es decir se aplican a cada elemento de un vector:
+
+```r
+> x <- 1:4; y <- 6:9 
+> x + y
+[1] 7 9 11 13 
+> x > 2
+[1] FALSE FALSE  TRUE  TRUE
+> x >= 2
+[1] FALSE  TRUE  TRUE  TRUE
+> y == 8
+[1] FALSE FALSE TRUE FALSE 
+> x * y
+[1] 6 14 24 36
+> x / y
+[1] 0.1666667 0.2857143 0.3750000 0.4444444
+```
+
+## Otras funciones matemáticas
+
+* `sqrt()` : Raíz
+* `exp()` : Exponenciación
+* `ln()` : Logaritmo Natural
+* `abs()` : Valor ABsoluto
+* `min()` : Mínimo
+* `pmin()` : Mínimo Pareado
+* `mean()` : Promedio.

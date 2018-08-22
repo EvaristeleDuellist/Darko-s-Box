@@ -1,0 +1,36 @@
+title{ 
+      font-size: 50px;
+      color: DarkBlue;
+  }
+body{ /* Normal  */
+      font-size: 8px;
+  }
+h2 { /* Header 2 */
+    font-size: 40px;
+  color: DarkBlue;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+  color: DarkBlue;
+}
+pre { /* Códigos */
+    font-size: 25px;
+}
+p {
+   font-size: 25px;
+}
+.gdbar img {
+  width: 500px !important;
+  height: 100px !important;
+  margin: 80px 8px;
+}
+.gdbar {
+  width: 1070px !important;
+  height: 120px !important;
+  color: DarkBlue;
+}
+slides > slide:not(.nobackground):before {
+  width: 150px;
+  height: 30px;
+  background-size: 100px 20px;
+}
