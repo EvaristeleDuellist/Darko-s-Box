@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 source("D:/CamiloYate/Funciones.R")
 
 Depurar.Numero<-function(x){
@@ -126,5 +125,4 @@ Q1<-BD %>% group_by(nroidentificacion) %>%
 
 
 unique(BD$estadotarjeta)
->>>>>>> 5308310d9fd680f7f63a4eff58a3d19ee6c67bee
 str(BD)
