@@ -28,12 +28,3 @@ leaflet(options = leafletOptions(zoomControl = FALSE, attributionControl=FALSE, 
   addHeatmap(data = afiliados, lat =~CY , lng =~CX, radius = 15, max=0.5, blur=27, group = "Afilaidos") %>% 
   addMarkers(data= infra, lat =~CY , lng =~CX, icon = Farmacias, popup=~NOMBRE, group = "Droguerias") %>% 
   addLayersControl(overlayGroups  = c("Afilaidos", "Droguerias"), options = layersControlOptions(collapsed = FALSE))
-
-
-dir(recursive = T)
-?addMarkers
-
-dir("~", recursive = T)
-
-
-names(afiliados)
