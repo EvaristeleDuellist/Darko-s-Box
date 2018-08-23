@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1523538277244.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1839842391",
+    "id" : "49DBEF65",
+    "lastKnownWriteTime" : 1523709226,
+    "last_content_update" : 1523709226280,
+    "path" : "D:/CamiloYate/2018/Credito/1. Localizacion TMS/Protocolo/TMS.R",
+    "project_path" : "Protocolo/TMS.R",
+    "properties" : {
+        "cursorPosition" : "68,0",
+        "scrollLine" : "43"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,33 @@
+"0","mapa<-get_map(location='bogota', zoom = 11,source=""google"", maptype = 'terrain-lines', messaging = F)"
+"2","maptype = ""terrain-lines"" is only available with source = ""stamen"".
+"
+"2","resetting to source = ""stamen""...
+"
+"2","Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=bogota&zoom=11&size=640x640&scale=2&maptype=terrain&sensor=false
+"
+"2","Information from URL : http://maps.googleapis.com/maps/api/geocode/json?address=bogota&sensor=false
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/601/995.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/602/995.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/603/995.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/601/996.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/602/996.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/603/996.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/601/997.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/602/997.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/603/997.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/601/998.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/602/998.png
+"
+"2","Map from URL : http://tile.stamen.com/terrain-lines/11/603/998.png
+"
