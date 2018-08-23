@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 rm(list=ls(all=TRUE))
 
 #### Paquetes y funciones ----
@@ -248,4 +247,3 @@ PrimCompra <- Calif_Col %>%
 prop.table(table(PrimCompra$PrimeraCompra))
 
 fwrite(PrimCompra, "./Resultados/Bases de Datos/BaseCalificada2.csv")
->>>>>>> 5308310d9fd680f7f63a4eff58a3d19ee6c67bee
