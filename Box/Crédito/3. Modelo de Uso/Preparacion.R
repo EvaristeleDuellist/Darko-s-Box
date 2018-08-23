@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 rm(list=ls(all=TRUE))
 #### Paquetes y funciones ----
 source("C:/Users/Camilo Yate Tamara/Google Drive/R/Funciones.R")
@@ -115,5 +114,3 @@ BD$Colsubsidio<-as.factor(ifelse(BD$nitestablecimiento==8600073361, 1,0))
 
 saveRDS(BD, "./BD/Depuradas/BD.rds")
 rm(prim, Cobranzas, Conv, Afiliado)  
-
->>>>>>> 5308310d9fd680f7f63a4eff58a3d19ee6c67bee
