@@ -1,0 +1,8 @@
+*.rds
+*.csv
+*.xlsx
+*.xls
+*.txt
+.Rproj.user
+.Rhistory
+.RData
