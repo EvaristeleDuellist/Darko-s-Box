@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 source("D:/CamiloYate/Funciones.r")
 
 pkgs<-c("data.table", "lubridate", "dplyr", "ggmap", "ggplot2", "scales")
