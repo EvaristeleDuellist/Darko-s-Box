@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #### Paquetes y funciones ----
 source("C:/Users/Camilo Yate Tamara/Google Drive/R/Funciones.R")
 pkgs<-c("dplyr","cluster", "factoextra", "woeBinning","caret", "randomForest",
@@ -122,6 +121,3 @@ modelo_lr.Pred=predict(modelo_lr,test,type="prob")
 modelo_lr.roc<-roc(test$Colsubsidio,modelo_lr.Pred[,2])
 plot(modelo_lr.roc, print.thres = "best", col="darkorchid")
 modelo_lr.auc=pROC::auc(modelo_lr.roc);modelo_lr.auc
-
-
->>>>>>> 5308310d9fd680f7f63a4eff58a3d19ee6c67bee
