@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 rm(list=ls(all=TRUE))
 
 #### Paquetes y funciones ----
@@ -132,6 +131,4 @@ saveRDS(logmodel$finalModel, "./Resultados/Modelos/Colsubsidio.rds")
 #                    num.trees = 100)
 # plot(modelo_rf)
 # confusionMatrix(modelo_rf)
-# 
-# 
->>>>>>> 5308310d9fd680f7f63a4eff58a3d19ee6c67bee
+#
