@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 rm(list=ls(all=TRUE))
 BD<-readRDS("./BD/Depuradas/BD.rds")
 
@@ -133,5 +132,3 @@ saveRDS(BD_Clasificacion, "./Resultados/Modelos/Binned.rds")
 saveRDS(modelo_lr, "./Resultados/Modelos/Clasificacion.rds")
 saveRDS(best_thresh, "./Resultados/Modelos/best_thresh.rds")
 saveRDS(bin, "./Resultados/Modelos/bin.rds")
-
->>>>>>> 5308310d9fd680f7f63a4eff58a3d19ee6c67bee
