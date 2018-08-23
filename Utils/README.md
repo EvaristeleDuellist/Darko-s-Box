@@ -1,3 +1,3 @@
 # Utils
 
-This repository contains several codes in R ans Python in ordr o execture common tasks in daily work.
+This repository contains several codes in R and Python in order o execute common tasks in daily work.
