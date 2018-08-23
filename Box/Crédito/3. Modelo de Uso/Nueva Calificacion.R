@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 rm(list=ls(all=TRUE))
 
 #### Paquetes y funciones ----
@@ -283,5 +282,3 @@ Calificada <- step2 %>%
 fwrite(Calificada, "BD/Calificaciones/Calificada_17Jun18.csv", sep=";")
 
 rm(list=ls(all=T))
-
->>>>>>> 5308310d9fd680f7f63a4eff58a3d19ee6c67bee
